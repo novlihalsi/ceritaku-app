@@ -28,9 +28,6 @@ export function generateStoryItemTemplate({
             ${description}
           </div>
         </div>
-        <a class="btn story-item__read-more" href="#/story/${id}">
-          Selengkapnya <i class="fas fa-arrow-right"></i>
-        </a>
       </div>
     </div>
   `;
