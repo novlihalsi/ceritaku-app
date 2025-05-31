@@ -68,32 +68,41 @@ class App {
   }
 
   async _setupPushNotification() {
-    const pushNotificationTools = document.getElementById('push-notification-tools');
-    const isSubscribed = await isCurrentPushSubscriptionAvailable();
+    const isLogin = !!getAccessToken();
+    if (isLogin) {
+
+      const pushNotificationTools = document.getElementById('push-notification-tools');
+      const isSubscribed = await isCurrentPushSubscriptionAvailable();
 
 
-    if (isSubscribed) {
-      pushNotificationTools.innerHTML = generateUnsubscribeButtonTemplate();
-      document.getElementById('unsubscribe-button').addEventListener('click', () => {
-        unsubscribe().finally(() => {
+      if (isSubscribed) {
+        pushNotificationTools.innerHTML = generateUnsubscribeButtonTemplate();
+        document.getElementById('unsubscribe-button').addEventListener('click', () => {
+          unsubscribe().finally(() => {
+            this._setupPushNotification();
+          });
+        });
+
+        return;
+      }
+
+      pushNotificationTools.innerHTML = generateSubscribeButtonTemplate();
+      document.getElementById('subscribe-button').addEventListener('click', () => {
+        subscribe().finally(() => {
           this._setupPushNotification();
         });
       });
-
-      return;
     }
-
-    pushNotificationTools.innerHTML = generateSubscribeButtonTemplate();
-    document.getElementById('subscribe-button').addEventListener('click', () => {
-      subscribe().finally(() => {
-        this._setupPushNotification();
-      });
-    });
   }
 
   async renderPage() {
     const url = getActiveRoute();
-    const route = routes[url];
+    let route = routes[url];
+
+    if (!route) {
+      route = routes['*']
+    }
+
 
     const page = route()
 
