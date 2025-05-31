@@ -76,6 +76,9 @@ export default class HomePage {
   }
 
   hideLoading() {
-    document.getElementById('story-list-loading').innerHTML = '';
+    const storyListLoading = document.getElementById('story-list-loading')
+    if (storyListLoading) {
+      storyListLoading.innerHTML = '';
+    }
   }
 }

@@ -74,6 +74,7 @@
 
   .nav-list {
     flex-direction: row;
+    align-items: center;
   }
 
   .nav-list li a {
