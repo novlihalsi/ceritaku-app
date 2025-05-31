@@ -16,6 +16,11 @@ module.exports = {
         test: /\.(png|jpe?g|gif)$/i,
         type: 'asset/resource',
       },
+      {
+        test: /\.html$/i, // definisi berkas html
+        include: path.resolve(__dirname, 'src/scripts/pages'), // sesuaikan alamat 
+        type: 'asset/source', // Import sebagai teks
+      },
     ],
   },
   plugins: [

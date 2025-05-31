@@ -3,6 +3,7 @@ import * as StoryAPI from '../../data/api'
 import { generateEmptyStoriesTemplate, generateStoriesErrorTemplate, generateStoryItemTemplate } from "../../templates/story";
 import { generateLoaderAbsoluteTemplate } from "../../templates/loader";
 import Map from "../../utils/map";
+import template from './home-page.html?raw';
 
 export default class HomePage {
   _presenter = null
@@ -10,22 +11,7 @@ export default class HomePage {
 
 
   async render() {
-    return `
-      <section>
-        <div class="story-map-container">
-          <div id="map" class="story-map"></div>
-          <div id="map-loading"></div>
-        </div>
-      </section>
-
-      <section class="container">
-        <h1 class="section-title">Daftar Cerita</h1>
-        <div class="story-list__container">
-          <div id="story-list"></div>
-          <div id="story-list-loading"></div>
-        </div>
-      </section>
-    `;
+    return template
   }
 
   async afterRender() {

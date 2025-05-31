@@ -1,41 +1,13 @@
 import LoginPresenter from './login-presenter';
 import * as StoryAPI from '../../../data/api';
 import * as AuthModel from '../../../utils/auth';
+import template from './login-page.html?raw'
 
 export default class LoginPage {
   #presenter = null;
 
   async render() {
-    return `
-      <section class="login-container">
-        <article class="login-form-container">
-          <h1 class="login__title">Masuk akun</h1>
-
-          <form id="login-form" class="login-form">
-            <div class="form-control">
-              <label for="email-input" class="login-form__email-title">Email</label>
-
-              <div class="login-form__title-container">
-                <input id="email-input" type="email" name="email" required placeholder="Contoh: nama@email.com">
-              </div>
-            </div>
-            <div class="form-control">
-              <label for="password-input" class="login-form__password-title">Password</label>
-
-              <div class="login-form__title-container">
-                <input id="password-input" type="password" name="password" required placeholder="Masukkan password Anda">
-              </div>
-            </div>
-            <div class="form-buttons login-form__form-buttons">
-              <div id="submit-button-container">
-                <button class="btn" type="submit">Masuk</button>
-              </div>
-              <p class="login-form__do-not-have-account">Belum punya akun? <a href="#/register">Daftar</a></p>
-              </div>
-          </form>
-        </article>
-      </section>
-    `;
+    return template
   }
 
   async afterRender() {
